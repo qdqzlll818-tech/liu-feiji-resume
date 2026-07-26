@@ -18,6 +18,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      - name: Copy original full-resolution portrait
+        run: |
+          curl --fail --location --retry 3 "https://liu-feiji-interactive-resume.candid-lemon-9966.chatgpt.site/avatar.png" --output avatar.png
+          test "$(wc -c < avatar.png)" -gt 1000000
+          sed -i 's#</body>#<script>document.querySelectorAll(".portrait img").forEach(function(i){i.src="avatar.png"})</script></body>#' index.html
       - uses: actions/configure-pages@v5
         with:
           enablement: true
