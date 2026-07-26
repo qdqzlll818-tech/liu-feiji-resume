@@ -22,7 +22,7 @@ jobs:
         run: |
           curl --fail --location --retry 3 "https://liu-feiji-interactive-resume.candid-lemon-9966.chatgpt.site/avatar.png" --output avatar.png
           test "$(wc -c < avatar.png)" -gt 1000000
-          sed -i 's#</body>#<style>.guide{display:none!important}.spot{background:transparent!important;border-color:transparent!important}.spot:after{opacity:0}.spot:hover,.spot.active{border-color:#23251f73!important;background:#f5f9e148!important}.spot:hover:after,.spot.active:after{opacity:1}</style><script>document.querySelectorAll(".portrait img").forEach(function(i){i.src="avatar.png"})</script></body>#' index.html
+          sed -i 's~</body>~<style>.guide{display:none!important}.spot{background:transparent!important;border-color:transparent!important}.spot:after{opacity:0}.spot:hover,.spot.active{border-color:#23251f73!important;background:#f5f9e148!important}.spot:hover:after,.spot.active:after{opacity:1}</style><script>document.querySelectorAll(".portrait img").forEach(function(i){i.src="avatar.png"})</script></body>~' index.html
       - uses: actions/configure-pages@v5
         with:
           enablement: true
